@@ -13,17 +13,19 @@ api_key = os.getenv("MISTRAL_KEY")
 
 # Load data
 # loader = TextLoader("essay.txt")
-loader = TextLoader("fiction.txt")
+loader = TextLoader("text.txt")
 docs = loader.load()
 # Split text into chunks 
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=20)
+text_splitter = CharacterTextSplitter(chunk_size=4, chunk_overlap=1)
 documents = text_splitter.split_documents(docs)
 # Define the embedding model
 embeddings = MistralAIEmbeddings(model="mistral-embed", mistral_api_key=api_key)
 # Create the vector store 
 vector = FAISS.from_documents(documents, embeddings)
 print("Vector store created number of documents:", vector.index.ntotal)
-results = vector.similarity_search("The author worked on two main things before college.")
+
+results = vector.similarity_search("Interest receivable and similar income.")
+
 print("nunber of documents:", len(results))
 print("documents 0:", results[0].page_content)
 # Define a retriever interface
@@ -42,5 +44,5 @@ Question: {input}""")
 # Create a retrieval chain to answer questions
 document_chain = create_stuff_documents_chain(model, prompt)
 retrieval_chain = create_retrieval_chain(retriever, document_chain)
-response = retrieval_chain.invoke({"input": "What were the two main things the author worked on before college?"})
+response = retrieval_chain.invoke({"input": "What is the interest receivable and similar income?"})
 print(response["answer"])
