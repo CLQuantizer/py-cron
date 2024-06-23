@@ -38,10 +38,10 @@ def message_at_19():
 
 
 # Schedule the job to run every day at 7:00 AM
-schedule.every().day.at("07:00").do(message_at_7)
+schedule.every().day.at("06:00").do(message_at_7)
 
 # Schedule the job to run every day at 19:00 PM
-schedule.every().day.at("19:00").do(message_at_19)
+schedule.every().day.at("18:00").do(message_at_19)
 
 # Keep the script running
 while True:
