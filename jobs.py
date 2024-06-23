@@ -43,9 +43,6 @@ schedule.every().day.at("07:00").do(message_at_7)
 # Schedule the job to run every day at 19:00 PM
 schedule.every().day.at("19:00").do(message_at_19)
 
-# run this job every 5 seconds for testing
-schedule.every(10).seconds.do(message_at_19)
-
 # Keep the script running
 while True:
     schedule.run_pending()
