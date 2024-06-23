@@ -7,6 +7,7 @@ app = FastAPI()
 async def greeting(name):
     return {"greeting": "hello!" + name}
 
+
 @app.get("/even/{num}")
 async def isEven(num):
     # convert the string to integer
@@ -17,6 +18,7 @@ async def isEven(num):
         return {"even": "yes"}
     else:
         return {"even": "no"}
+
 
 @app.get("/divide/{num1}/{num2}")
 async def add(num1, num2):
