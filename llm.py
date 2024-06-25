@@ -32,7 +32,7 @@ def generate_encouragement(cnt: int, words: list[str]) -> str:
             print("prompt:", prompt)
             message = client.messages.create(
                 model="claude-3-5-sonnet-20240620",
-                max_tokens=500,
+                max_tokens=700,
                 temperature=0.8,
                 system="The user is supposed to learn 10 French words a day. "
                        "He works in a all-French environment. Please speak to him only in Traditional Chinese. "
