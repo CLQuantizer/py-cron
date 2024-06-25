@@ -11,12 +11,10 @@ CLAUDE = config['CLAUDE']
 
 client = anthropic.Anthropic(api_key=CLAUDE)
 
-def get_6_random_words(words: List[str]):
-    return random.sample(words, 6)
-
+get_random_words = lambda words: random.sample(words, 10) if len(words) > 10 else words
 
 def get_prompt(cnt, words):
-    words = get_6_random_words(words)
+    words = get_random_words(words)
     base_msg = f"我今天學了{cnt}個法語單詞！"
     if cnt >= 10:
         return base_msg + f"我已經達到我的目標！請幫我複習一些這些單詞：{words}。"
