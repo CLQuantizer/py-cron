@@ -15,7 +15,7 @@ def get_words_today():
         try:
             connection = psycopg2.connect(PG_URL)
             cursor = connection.cursor()
-            cursor.execute("SELECT word FROM words WHERE updated_at::date = CURRENT_DATE")
+            cursor.execute("SELECT word FROM words WHERE updated_at >= NOW() - INTERVAL '24 hours'")
             words = cursor.fetchall()
             cursor.close()
             connection.close()
