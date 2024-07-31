@@ -44,6 +44,8 @@ schedule.every().day.at("06:00").do(message_at_7)
 schedule.every().day.at("18:00").do(message_at_19)
 
 # Keep the script running
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+if __name__ == '__main__':
+    print("Starting the job scheduler...")
+    while True:
+        schedule.run_pending()
+        time.sleep(1)

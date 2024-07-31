@@ -12,3 +12,20 @@ RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
+
+
+#[Unit]
+#Description=My Jobs
+#After=network.target
+#
+#[Service]
+#Type=simple
+#User=root
+#WorkingDirectory=/home/ubuntu/py-cron
+#ExecStart=/home/ubuntu/.local/bin/poetry run python jobs.py
+#Restart=always
+#RestartSec=10
+#
+#[Install]
+#WantedBy=multi-user.target
+#~                                                                                                     ~
