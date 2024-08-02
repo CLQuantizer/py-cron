@@ -26,7 +26,6 @@ if __name__ == '__main__':
     start_http_server(9090)
     scheduler.add_job(lambda: send_telegram_message("早上好！今天要學法語了！"), 'cron', hour=7, minute=0)
     scheduler.add_job(message_at_18, 'cron', hour=17, minute=0)
-
     try:
         print("Starting the job scheduler...")
         scheduler.start()
