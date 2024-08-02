@@ -20,7 +20,7 @@ WantedBy=multi-user.target
 #
 #[Service]
 #Type=simple
-#User=root
+#User=ubuntu
 #WorkingDirectory=/home/ubuntu/py-cron
 #ExecStart=/home/ubuntu/.local/bin/poetry run python jobs.py
 #Restart=always

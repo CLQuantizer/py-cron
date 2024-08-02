@@ -11,6 +11,7 @@ python-dotenv = "^1.0.1"
 schedule = "^1.2.2"
 psycopg2-binary = "^2.9.9"
 anthropic = "^0.29.0"
+sqlalchemy = "^2.0.31"
 
 
 [build-system]
