@@ -2,13 +2,10 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import create_engine, Column, String, DateTime
 from sqlalchemy.orm import sessionmaker, declarative_base
-from psycopg2 import OperationalError
-import time
 from dotenv import dotenv_values
-import psycopg2
 
 config = dotenv_values(".env")
-PG_URL = 'postgresql+psycopg2://' + config['PG'].split('://')[1]
+PG_URL = config['PG']
 
 engine = create_engine(PG_URL)
 Base = declarative_base()
@@ -21,6 +18,12 @@ class Word(Base):
     word = Column(String, primary_key=True)
     updated_at = Column(DateTime)
 
+
+class sentimentRecord(Base):
+    __tablename__ = 'symbols'
+
+    symbol = Column(String, primary_key=True)
+    updated_at = Column(DateTime)
 
 # Create session factory
 Session = sessionmaker(bind=engine)

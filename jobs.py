@@ -1,5 +1,4 @@
-import schedule
-import time
+from apscheduler.schedulers.blocking import BlockingScheduler
 import requests
 from dotenv import dotenv_values
 
@@ -37,15 +36,16 @@ def message_at_19():
     send_telegram_message(f"{encouragement}")
 
 
-# Schedule the job to run every day at 7:00 AM
-schedule.every().day.at("06:00").do(message_at_7)
-
-# Schedule the job to run every day at 19:00 PM
-schedule.every().day.at("18:00").do(message_at_19)
-
-# Keep the script running
 if __name__ == '__main__':
-    print("Starting the job scheduler...")
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    scheduler = BlockingScheduler()
+
+    scheduler.add_job(message_at_7, 'cron', hour=6, minute=0)
+    scheduler.add_job(message_at_19, 'cron', hour=18, minute=0)
+    #  for test purpose add a job to log every 10 seconds
+    # scheduler.add_job(lambda: print("Logging..."), 'interval', seconds=10)
+
+    try:
+        print("Starting the job scheduler...")
+        scheduler.start()
+    except (KeyboardInterrupt, SystemExit):
+        pass
