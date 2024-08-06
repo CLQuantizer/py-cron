@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root/py-demo
+WorkingDirectory=/root/py-cron
 ExecStart=/root/.local/bin/poetry run python jobs.py
 Restart=always
 RestartSec=10

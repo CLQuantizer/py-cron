@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from tenacity import retry, stop_after_attempt, wait_fixed
 
 from sqlalchemy import create_engine, Column, String, DateTime, Float
 from sqlalchemy.orm import sessionmaker, declarative_base
@@ -40,6 +41,7 @@ def get_words_today():
         return [word[0] for word in words]
 
 
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(1))
 def select_recent_5_words():
     with Session() as session:
         words = session.query(Word.word).order_by(Word.updated_at.desc()).limit(5).all()
