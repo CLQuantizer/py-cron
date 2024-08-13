@@ -1,7 +1,7 @@
 import logging
 from anthropic import Anthropic
 from pydantic import BaseModel
-
+import instructor
 from config import CONFIGS
 
 CLAUDE = CONFIGS['CLAUDE']

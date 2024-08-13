@@ -1,3 +1,4 @@
+import random
 from apscheduler.schedulers.blocking import BlockingScheduler
 import logging
 
@@ -17,6 +18,10 @@ def message_at_18():
     if cnt < 10:
         cnt = 5
         words = select_recent_5_words()
+    else:
+        cnt = 10
+        # take 10 random words
+        words = random.sample(words, 10)
     send_telegram_message(summarize_day(cnt, words))
 
 
