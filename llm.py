@@ -1,7 +1,5 @@
 import logging
 from anthropic import Anthropic
-import random
-import instructor
 from pydantic import BaseModel
 
 from config import CONFIGS
